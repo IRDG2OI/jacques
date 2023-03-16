@@ -14,7 +14,7 @@ from jacques.model_building.model_config import neural_network_settings
 from jacques.model_building.layers import HeadNet, build_model
 from jacques.dataloading.datamodule import DataModule
 from jacques.dataloading.custom_datasets import UnlabeledDataset
-from jacques.inference.save_predictions import SavePredictionsDf
+from jacques.inference.output import SavePredictionsDf
 
 try:
      set_start_method('spawn')

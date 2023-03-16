@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://static.wikia.nocookie.net/pixar/images/d/d5/Jacques.jpg/revision/latest?cb=20111208040508" height="55px">
+<img src="jacques.png" height="55px">
 
 # Jacques : a cleaner for your Seatizen sessions
 
