@@ -17,7 +17,7 @@ Have a look to the seatizen acquisition protocol here :
 ## Installation
 ### Prerequisites
 
-To install jacques in your working environnement, you should already have installed a pytorch version adapted to your machine resources. By following the link below, you can find the optimal configuration to install pytorch in your working environnement.
+To install jacques in your working environnement, you should already have installed a pytorch (and torchvision) version adapted to your machine resources. By following the link below, you can find the optimal configuration to install pytorch in your working environnement.
 > https://pytorch.org/
 
 Jacques is a git project located on the [Ifremer's gitlab](https://gitlab.ifremer.fr/). To clone it you need Ifremer's gitlab access. 
