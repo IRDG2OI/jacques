@@ -1,1 +1,0 @@
-from .predictor import classify_useless_images
