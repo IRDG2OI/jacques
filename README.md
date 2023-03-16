@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="jacques.png" height="55px">
+<img src="jacques.png" height="150px">
 
 # Jacques : a cleaner for your Seatizen sessions
 
