@@ -34,11 +34,15 @@ pip install .
 
 :bulb: If you are working in an environnement, don't forget to `pip install ipykernel` to make your environnement visible in your favourite IDE.
 
+**Datarmor user** : jacques is already installed for you in the jacques_env environnement. Just connect to the [jupyterlab IDE](datarmor-jupyterhub.ifremer.fr/) and select jacques_env environnement to execute your notebooks. If you don't see jacques_env, you might not be part of the Seatizen group and should ask access to one of the members.
+
 ## Quickstart
-:man_student: **All the tutorials (notebooks) are available here : [Jacques examples](https://gitlab.ifremer.fr/sb07899/seatizen/-/tree/justine-matteo-branch/rm_useless_images/jacques_examples)**
+:man_student: 
+All the tutorials (notebooks) are available here : [Jacques examples](https://gitlab.ifremer.fr/sb07899/seatizen/-/tree/justine-matteo-branch/rm_useless_images/jacques_examples)
 
 ### Classify images in one directory
-:man_student: [Tuto : classify one directory ](https://gitlab.ifremer.fr/sb07899/seatizen/-/blob/justine-matteo-branch/rm_useless_images/jacques_examples/single_dir_classification.ipynb)
+:man_student: 
+[Tuto : classify one directory ](https://gitlab.ifremer.fr/sb07899/seatizen/-/blob/justine-matteo-branch/rm_useless_images/jacques_examples/single_dir_classification.ipynb)
 
 To classify a folder of images, you can execute the script below in a python script or a notebook:
 
@@ -94,7 +98,8 @@ Jacques will automatically selects the files that are images in your folder and 
 
 
 ### Classify images in several directories
-:man_student: [Tuto : classify multiple directories ](https://gitlab.ifremer.fr/sb07899/seatizen/-/blob/justine-matteo-branch/rm_useless_images/jacques_examples/multiple_dir_classification.ipynb)
+:man_student: 
+[Tuto : classify multiple directories ](https://gitlab.ifremer.fr/sb07899/seatizen/-/blob/justine-matteo-branch/rm_useless_images/jacques_examples/multiple_dir_classification.ipynb)
 
 To classify images contained in several directories just make a list containg the paths to your directories and execute the following codes:
 
@@ -111,7 +116,8 @@ for directory in list_of_dir:
     results_of_all_dir = pd.concat([results_of_all_dir, results], axis=0, ignore_index=True)
 ```
 ### Classify multiple Seatizen sessions all at once
-:man_student: [Tuto : classify multiple Seatizen sessions ](https://gitlab.ifremer.fr/sb07899/seatizen/-/blob/justine-matteo-branch/rm_useless_images/jacques_examples/arbo_dir_classification.ipynb)
+:man_student: 
+[Tuto : classify multiple Seatizen sessions ](https://gitlab.ifremer.fr/sb07899/seatizen/-/blob/justine-matteo-branch/rm_useless_images/jacques_examples/arbo_dir_classification.ipynb)
 
 For Seatizen sessions that follows the famous and unique directory tree (written below), you can directly classify images of these sessions.
 
@@ -155,7 +161,7 @@ for session in list_of_sessions:
     results_of_all_sessions = pd.concat([results_of_all_sessions, results], axis=0, ignore_index=True)
 ```
 
-### Move useless images
+### Move images
 Once the classification of useless and useful images has been done, you can choose to copy or paste images in another directory. If working with the seatizen tree, follow the method in the tuto provided to move images keeping the name of the session as a subdirectory.
 
 
