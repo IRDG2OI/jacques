@@ -11,8 +11,8 @@ src/jacques/dataloading/custom_datasets.py
 src/jacques/dataloading/datamodule.py
 src/jacques/inference/__init__.py
 src/jacques/inference/model_checkpoint.ckpt
+src/jacques/inference/output.py
 src/jacques/inference/predictor.py
-src/jacques/inference/save_predictions.py
 src/jacques/model_building/__init__.py
 src/jacques/model_building/layers.py
 src/jacques/model_building/model.py

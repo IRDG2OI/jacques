@@ -22,7 +22,7 @@ dependencies = [
     "pandas==1.2.3",
     "numpy==1.24.2",
     "matplotlib==3.7.1",
-    "pytorch-lightning==1.9.3",
+    "pytorch-lightning==1.9.3"
 ]
 
 [tool.setuptools.package-data]

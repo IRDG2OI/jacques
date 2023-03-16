@@ -10,8 +10,146 @@ Classifier: Operating System :: OS Independent
 Requires-Python: >=3.7
 Description-Content-Type: text/markdown
 
-# Example Package
+<div align="center">
 
-This is a simple example package. You can use
-[Github-flavored Markdown](https://guides.github.com/features/mastering-markdown/)
-to write your content.
+<img src="https://static.wikia.nocookie.net/pixar/images/d/d5/Jacques.jpg/revision/latest?cb=20111208040508" height="55px">
+
+# Jacques : a cleaner for your Seatizen sessions
+
+</div>
+
+Jacques is a python package that allows to detect useless images within a folder using artificial intelligence. The model that detects useless images is trained on photos taken following the Seatizen protocol.
+Have a look to the seatizen acquisition protocol here : 
+<div align="center">    
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7129736.svg)](https://doi.org/10.5281/zenodo.7129736)
+
+</div>
+
+## Installation
+### Prerequisites
+
+To install jacques in your working environnement, you should already have installed pytorch adapted to your machine resources. By following the link below, you can find the optimal configuration to install pytorch in your working environnement.
+> https://pytorch.org/
+
+### Jacques installation
+
+Jacques is a git project located on the Ifremer's gitlab. To clone it you need Ifremer's gitlab access. Jacques can be installed by executing the following lines in your terminal:
+
+```
+git clone https://gitlab.ifremer.fr/jd326f6/jacques.git
+cd jacques
+pip install .
+```
+
+:bulb: If you are working in an environnement, don't forget to `pip install ipykernel` to make your environnement visible in your favourite IDE.
+
+## Quickstart
+### Classify images in one directory
+To classify a folder of images, you can execute the script below in a python script or a notebook:
+
+```py
+from jacques.inference import predictor
+results = predictor.classify_useless_images(folder_path='/path/to/your/image/folder')
+```
+
+Jacques will automatically selects the files that are images in your folder and predict the utility of the image thanks to deep learning. It will return a pandas dataframe with 3 columns : directory, name and label (useless or useful). Here is an example of the results provided by  `classify_useless_images()` : 
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>dir</th>
+      <th>image</th>
+      <th>class</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>/path/to/your/image/folder/</td>
+      <td>session_2018_03_04_kite_Pointe_Esny_G0032421.JPG</td>
+      <td>useful</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>/path/to/your/image/folder/</td>
+      <td>session_2018_03_12_kite_Le_Morne_G0029296.JPG</td>
+      <td>useful</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>/path/to/your/image/folder/</td>
+      <td>session_2022_10_20_aldabra_plancha_body_v1A_00_1_399.jpeg</td>
+      <td>useless</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>/path/to/your/image/folder/</td>
+      <td>session_2021_01_13_Hermitage_AllRounder_image_001196.jpg</td>
+      <td>useful</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>/path/to/your/image/folder/</td>
+      <td>session_2019_09_20_kite_Le_Morne_avec_Manu_G0070048.JPG</td>
+      <td>useful</td>
+    </tr>
+  </tbody>
+</table>
+
+
+### Classify images in several directories
+To classify images contained in several directories just make a list containg the paths to your directories and execute the following codes:
+
+```py
+from jacques.inference import predictor
+
+list_of_dir = ['path/to/dir/1/', 'path/to/dir/2/', 'path/to/dir/3/']
+
+results_of_all_dir = pd.DataFrame(columns = ['dir', 'image', 'class'])
+
+for directory in list_of_dir:
+    results = predictor.classify_useless_images(folder_path=directory)
+    results_of_all_dir = pd.concat([results_of_all_dir, results], axis=0, ignore_index=True)
+
+```
+
+### Display results 
+Optionally, you can display some or all of the results using  `display_results()` and the results dataframe returned by `classify_useless_images()`.
+
+```py
+from jacques.inference.save_predictions import display_predictions
+display_predictions(results, image_nb=5)
+```
+
+### Move useless images
+Once the classification of useless and useful images has been done, you can choose to copy or paste 
+
+
+
+### Export results
+Results are returned as a pandas dataframe. For instance, if you want to export the results in a csv format just add :
+
+```py
+results.to_csv('path/to/export/results.csv', index = False, header = True)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
