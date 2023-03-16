@@ -35,6 +35,12 @@ pip install .
 :bulb: If you are working in an environnement, don't forget to `pip install ipykernel` to make your environnement visible in your favourite IDE.
 
 **Datarmor user** : jacques is already installed for you in the jacques_env environnement. Just connect to the [jupyterlab IDE](datarmor-jupyterhub.ifremer.fr/) and select jacques_env environnement to execute your notebooks. If you don't see jacques_env, you might not be part of the Seatizen group and should ask access to one of the members.
+For your first use of Jacques you will need to download a resnet manually from the terminal (only for datarmor users):
+```
+wget https://download.pytorch.org/models/resnet50-11ad3fa6.pth
+mv resnet50-11ad3fa6.pth ~/.cache/torch/hub/checkpoints/resnet50-11ad3fa6.pth
+```
+
 
 ## Quickstart
 :man_student: 
