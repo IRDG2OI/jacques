@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: jacques
+Version: 0.0.1
+Summary: A package to classify useless and useful images collected with the seatizen protocol.
+Author-email: Justine Talpaert <justine.daudon@ird.fr>
+Project-URL: Homepage, https://gitlab.ifremer.fr/jd326f6/jacques
+Project-URL: Bug Tracker, https://gitlab.ifremer.fr/jd326f6/jacques/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+
+# Example Package
+
+This is a simple example package. You can use
+[Github-flavored Markdown](https://guides.github.com/features/mastering-markdown/)
+to write your content.

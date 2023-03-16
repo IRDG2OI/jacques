@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jacques"
+version = "0.0.1"
+authors = [
+  { name="Justine Talpaert", email="justine.daudon@ird.fr" },
+]
+description = "A package to classify useless and useful images collected with the seatizen protocol."
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "pillow==8.4.0",
+    "tqdm==4.65.0", 
+    "importlib-resources==5.12.0",
+    "pandas==1.2.3",
+    "numpy==1.24.2",
+    "matplotlib==3.7.1",
+    "pytorch-lightning==1.9.3",
+]
+
+[tool.setuptools.package-data]
+"jacques.inference" = ["*.ckpt"]
+
+[project.urls]
+"Homepage" = "https://gitlab.ifremer.fr/jd326f6/jacques"
+"Bug Tracker" = "https://gitlab.ifremer.fr/jd326f6/jacques/issues"
