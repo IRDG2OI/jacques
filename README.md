@@ -17,7 +17,7 @@ Have a look to the seatizen acquisition protocol here :
 ## Installation
 ### Prerequisites
 
-To install jacques in your working environnement, you should already have installed a pytorch (and torchvision) version adapted to your machine resources. By following the link below, you can find the optimal configuration to install pytorch in your working environnement.
+To install jacques in your working environnement, you should already have installed a pytorch (and torchvision) version adapted to your machine resources. By following the link below, you can find the optimal configuration to install pytorch in your working environnement. Make sure to install the last version available.
 > https://pytorch.org/
 
 Jacques is a git project located on the [Ifremer's gitlab](https://gitlab.ifremer.fr/). To clone it you need Ifremer's gitlab access. 
@@ -34,7 +34,13 @@ pip install .
 
 :bulb: If you are working in an environnement, don't forget to `pip install ipykernel` to make your environnement visible in your favourite IDE.
 
-**Datarmor user** : jacques is already installed for you in the jacques_env environnement. Just connect to the [jupyterlab IDE](datarmor-jupyterhub.ifremer.fr/) and select jacques_env environnement to execute your notebooks. If you don't see jacques_env, you might not be part of the Seatizen group and should ask access to one of the members.
+**Datarmor user** : jacques is already installed for you in the jacques_env environnement. You firstly need to append a line at the end of a conda text file as follow:
+
+```
+echo '/home/datawork-iot-nos/Seatizen/conda-env/jacques_env' >> ~/.conda/environments.txt
+```
+
+Just connect to the [jupyterlab IDE](datarmor-jupyterhub.ifremer.fr/) and select jacques_env environnement to execute your notebooks. If you don't see jacques_env, you might not be part of the Seatizen group and should ask access to one of the members.
 For your first use of Jacques you will need to download a resnet manually from the terminal (only for datarmor users):
 ```
 wget https://download.pytorch.org/models/resnet50-11ad3fa6.pth
