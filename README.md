@@ -37,7 +37,7 @@ pip install .
 **Datarmor user** : jacques is already installed for you in the jacques_env environnement. You firstly need to append a line at the end of a conda text file as follow:
 
 ```
-echo '/home/datawork-iot-nos/Seatizen/conda-env/jacques_env' >> ~/.conda/environments.txt
+echo '/home/datawork-iot-nos/Seatizen/conda-env/jacques_cpu' >> ~/.conda/environments.txt
 ```
 
 Just connect to the [jupyterlab IDE](datarmor-jupyterhub.ifremer.fr/) and select jacques_env environnement to execute your notebooks. If you don't see jacques_env, you might not be part of the Seatizen group and should ask access to one of the members.
