@@ -60,7 +60,7 @@ To classify a folder of images, you can execute the script below in a python scr
 
 ```py
 from jacques.inference import predictor
-results = predictor.classify_useless_images(folder_path='/path/to/your/image/folder')
+results = predictor.classify_useless_images(folder_path='/path/to/your/image/folder', ckpt_path='/path/to/your/checkpoint/')
 ```
 
 Jacques will automatically selects the files that are images in your folder and predict the utility of the image thanks to deep learning. It will return a pandas dataframe with 3 columns : directory, name and label (useless or useful). Here is an example of the results provided by  `classify_useless_images()` : 
@@ -124,7 +124,7 @@ list_of_dir = ['path/to/dir/1/', 'path/to/dir/2/', 'path/to/dir/3/']
 results_of_all_dir = pd.DataFrame(columns = ['dir', 'image', 'class'])
 
 for directory in list_of_dir:
-    results = predictor.classify_useless_images(folder_path=directory)
+    results = predictor.classify_useless_images(folder_path=directory, ckpt_path='/checkpoint/path')
     results_of_all_dir = pd.concat([results_of_all_dir, results], axis=0, ignore_index=True)
 ```
 ### Classify multiple Seatizen sessions all at once
@@ -169,7 +169,7 @@ list_of_sessions = ['/path/to/session_YYYY_MM_DD_location_device_nb', '/path/to/
 
 results_of_all_sessions = pd.DataFrame(columns = ['dir', 'image', 'class'])
 for session in list_of_sessions:
-    results = predictor.classify_useless_images(folder_path=os.path.join(session, '/PROCESSED_DATA/FRAMES/'))
+    results = predictor.classify_useless_images(folder_path=os.path.join(session, '/PROCESSED_DATA/FRAMES/'), ckpt_path='/checkpoint/path')
     results_of_all_sessions = pd.concat([results_of_all_sessions, results], axis=0, ignore_index=True)
 ```
 

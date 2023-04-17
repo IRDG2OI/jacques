@@ -83,7 +83,7 @@ def classify_useless_images(folder_path, ckpt_path):
 
     unlabeled_set = UnlabeledDataset(unlabeled_img, folder_path, dm.transforms_test)
 
-    predict_dataloader = DataLoader(unlabeled_set, batch_size=1, shuffle = False, num_workers = os.cpu_count())
+    predict_dataloader = DataLoader(unlabeled_set, batch_size=1, shuffle = False, num_workers = 8)
 
     df = pd.DataFrame(columns = ['dir', 'image', 'class'])
 
