@@ -53,11 +53,12 @@ class UselessImagesPredictor():
             label = "useful"
         return prob, label
     
-def classify_useless_images(folder_path):
+def classify_useless_images(folder_path, ckpt_path):
     '''
     A function that classifies images stored in a folder.
     Input:
     folder_path : the path to a folder containing images (jpg or png formats accepted).
+    ckpt_path : the path to the checkpoint trained
     Output:
     df : a 3 columns dataframe (dir, image_name and label) with the predictions made by a deep learning model.
     '''
@@ -73,8 +74,6 @@ def classify_useless_images(folder_path):
     
     model = build_model(backbone, headnet)
 
-    ckpt_path = files('jacques.inference').joinpath('model_checkpoint.ckpt')
-
     predictor = UselessImagesPredictor(model, ckpt_path)
     
     unlabeled_img = os.listdir(folder_path)
@@ -84,7 +83,7 @@ def classify_useless_images(folder_path):
 
     unlabeled_set = UnlabeledDataset(unlabeled_img, folder_path, dm.transforms_test)
 
-    predict_dataloader = DataLoader(unlabeled_set, batch_size=1, shuffle = False, num_workers = 8)
+    predict_dataloader = DataLoader(unlabeled_set, batch_size=1, shuffle = False, num_workers = os.cpu_count())
 
     df = pd.DataFrame(columns = ['dir', 'image', 'class'])
 
