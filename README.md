@@ -20,8 +20,6 @@ Have a look to the seatizen acquisition protocol here :
 To install jacques in your working environnement, you should already have installed a pytorch (and torchvision) version adapted to your machine resources. By following the link below, you can find the optimal configuration to install pytorch in your working environnement. Make sure to install the last version available.
 > https://pytorch.org/
 
-Jacques is a git project located on the [Ifremer's gitlab](https://gitlab.ifremer.fr/). To clone it you need Ifremer's gitlab access. 
-
 ### Jacques installation
 
 Jacques can be installed by executing the following lines in your terminal:
@@ -51,6 +49,11 @@ mv resnet50-11ad3fa6.pth ~/.cache/torch/hub/checkpoints/resnet50-11ad3fa6.pth
 ## Quickstart
 :man_student: 
 All the tutorials (notebooks) are available here : [Jacques examples](https://gitlab.ifremer.fr/sb07899/seatizen/-/tree/justine-matteo-branch/rm_useless_images/jacques_examples)
+
+The checkpoint to load the classification model is available here : 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7822928.svg)](https://doi.org/10.5281/zenodo.7822928)
+
+
 
 ### Classify images in one directory
 :man_student: 
