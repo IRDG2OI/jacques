@@ -29,5 +29,5 @@ dependencies = [
 "jacques.inference" = ["*.ckpt"]
 
 [project.urls]
-"Homepage" = "https://gitlab.ifremer.fr/jd326f6/jacques"
-"Bug Tracker" = "https://gitlab.ifremer.fr/jd326f6/jacques/issues"
+"Homepage" = "https://github.com/6tronl/jacques"
+"Bug Tracker" = "https://github.com/6tronl/jacques/issues"
