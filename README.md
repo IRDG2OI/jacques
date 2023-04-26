@@ -48,7 +48,7 @@ mv resnet50-11ad3fa6.pth ~/.cache/torch/hub/checkpoints/resnet50-11ad3fa6.pth
 
 ## Quickstart
 :man_student: 
-All the tutorials (notebooks) are available here : [Jacques examples](https://gitlab.ifremer.fr/sb07899/seatizen/-/tree/justine-matteo-branch/rm_useless_images/jacques_examples)
+All the tutorials (notebooks) are available here : [Jacques examples](https://github.com/6tronl/jacques-examples)
 
 The checkpoint to load the classification model is available here : 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7822928.svg)](https://doi.org/10.5281/zenodo.7822928)
@@ -57,7 +57,7 @@ The checkpoint to load the classification model is available here :
 
 ### Classify images in one directory
 :man_student: 
-[Tuto : classify one directory ](https://gitlab.ifremer.fr/sb07899/seatizen/-/blob/justine-matteo-branch/rm_useless_images/jacques_examples/single_dir_classification.ipynb)
+[Tuto : classify one directory ](https://github.com/6tronl/jacques-examples/single_dir_classification.ipynb)
 
 To classify a folder of images, you can execute the script below in a python script or a notebook:
 
@@ -114,7 +114,7 @@ Jacques will automatically selects the files that are images in your folder and 
 
 ### Classify images in several directories
 :man_student: 
-[Tuto : classify multiple directories ](https://gitlab.ifremer.fr/sb07899/seatizen/-/blob/justine-matteo-branch/rm_useless_images/jacques_examples/multiple_dir_classification.ipynb)
+[Tuto : classify multiple directories ](https://github.com/6tronl/jacques-examples/multiple_dir_classification.ipynb)
 
 To classify images contained in several directories just make a list containg the paths to your directories and execute the following codes:
 
@@ -132,7 +132,7 @@ for directory in list_of_dir:
 ```
 ### Classify multiple Seatizen sessions all at once
 :man_student: 
-[Tuto : classify multiple Seatizen sessions ](https://gitlab.ifremer.fr/sb07899/seatizen/-/blob/justine-matteo-branch/rm_useless_images/jacques_examples/arbo_dir_classification.ipynb)
+[Tuto : classify multiple Seatizen sessions ](https://github.com/6tronl/jacques-examples/arbo_dir_classification.ipynb)
 
 For Seatizen sessions that follows the famous and unique directory tree (written below), you can directly classify images of these sessions.
 
