@@ -8,11 +8,10 @@
 
 Jacques is a python package to detect useless images within a directory using artificial intelligence. The model that detects useless images has been trained on photos acquired with the Seatizen protocol.
 Have a look to the seatizen acquisition protocol here : 
-<div align="center">    
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7129736.svg)](https://doi.org/10.5281/zenodo.7129736)
+[![Python package](https://github.com/6tronl/jacques/actions/workflows/main.yml/badge.svg)](https://github.com/6tronl/jacques/actions/workflows/main.yml)
 
-</div>
 
 ## Installation
 ### Prerequisites
@@ -51,7 +50,7 @@ mv resnet50-11ad3fa6.pth ~/.cache/torch/hub/checkpoints/resnet50-11ad3fa6.pth
 All the tutorials (notebooks) are available here : [Jacques examples](https://github.com/6tronl/jacques-examples)
 
 The checkpoint to load the classification model is available here : 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7822928.svg)](https://doi.org/10.5281/zenodo.7822928)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8041819.svg)](https://doi.org/10.5281/zenodo.8041819)
 As soon as you execute the code, if the latest checkpoint's release has not been already downloaded, it will be downloaded.
 
 
