@@ -61,7 +61,7 @@ class UselessImagesPredictor():
             prob = prob.cpu().numpy()
             prob = prob[0]
             prob = np.around(prob, decimals=3)
-        if prob > 0.5:
+        if prob > 0.306:
             label = "useless"
         else:
             label = "useful"
