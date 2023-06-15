@@ -1,3 +1,4 @@
+LICENSE
 README.md
 pyproject.toml
 src/jacques/__init__.py
@@ -10,7 +11,6 @@ src/jacques/dataloading/__init__.py
 src/jacques/dataloading/custom_datasets.py
 src/jacques/dataloading/datamodule.py
 src/jacques/inference/__init__.py
-src/jacques/inference/model_checkpoint.ckpt
 src/jacques/inference/output.py
 src/jacques/inference/predictor.py
 src/jacques/model_building/__init__.py

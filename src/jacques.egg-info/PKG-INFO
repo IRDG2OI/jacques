@@ -1,24 +1,25 @@
 Metadata-Version: 2.1
 Name: jacques
-Version: 0.0.1
+Version: 0.2.0
 Summary: A package to classify useless and useful images collected with the seatizen protocol.
 Author-email: Justine Talpaert <justine.daudon@ird.fr>
-Project-URL: Homepage, https://gitlab.ifremer.fr/jd326f6/jacques
-Project-URL: Bug Tracker, https://gitlab.ifremer.fr/jd326f6/jacques/issues
+Project-URL: Homepage, https://github.com/6tronl/jacques
+Project-URL: Bug Tracker, https://github.com/6tronl/jacques/issues
 Classifier: Programming Language :: Python :: 3
 Classifier: Operating System :: OS Independent
 Requires-Python: >=3.7
 Description-Content-Type: text/markdown
+License-File: LICENSE
 
 <div align="center">
 
-<img src="https://static.wikia.nocookie.net/pixar/images/d/d5/Jacques.jpg/revision/latest?cb=20111208040508" height="55px">
+<img src="jacques.png" height="150px">
 
 # Jacques : a cleaner for your Seatizen sessions
 
 </div>
 
-Jacques is a python package that allows to detect useless images within a folder using artificial intelligence. The model that detects useless images is trained on photos taken following the Seatizen protocol.
+Jacques is a python package to detect useless images within a directory using artificial intelligence. The model that detects useless images has been trained on photos acquired with the Seatizen protocol.
 Have a look to the seatizen acquisition protocol here : 
 <div align="center">    
 
@@ -29,12 +30,12 @@ Have a look to the seatizen acquisition protocol here :
 ## Installation
 ### Prerequisites
 
-To install jacques in your working environnement, you should already have installed pytorch adapted to your machine resources. By following the link below, you can find the optimal configuration to install pytorch in your working environnement.
+To install jacques in your working environnement, you should already have installed a pytorch (and torchvision) version adapted to your machine resources. By following the link below, you can find the optimal configuration to install pytorch in your working environnement. Make sure to install the last version available.
 > https://pytorch.org/
 
 ### Jacques installation
 
-Jacques is a git project located on the Ifremer's gitlab. To clone it you need Ifremer's gitlab access. Jacques can be installed by executing the following lines in your terminal:
+Jacques can be installed by executing the following lines in your terminal:
 
 ```
 git clone https://gitlab.ifremer.fr/jd326f6/jacques.git
@@ -44,13 +45,39 @@ pip install .
 
 :bulb: If you are working in an environnement, don't forget to `pip install ipykernel` to make your environnement visible in your favourite IDE.
 
+**Datarmor user** : jacques is already installed for you in the jacques_env environnement. You firstly need to append a line at the end of a conda text file as follow:
+
+```
+echo '/home/datawork-iot-nos/Seatizen/conda-env/jacques_cpu' >> ~/.conda/environments.txt
+```
+
+Just connect to the [jupyterlab IDE](datarmor-jupyterhub.ifremer.fr/) and select jacques_env environnement to execute your notebooks. If you don't see jacques_env, you might not be part of the Seatizen group and should ask access to one of the members.
+For your first use of Jacques you will need to download a resnet manually from the terminal (only for datarmor users):
+```
+wget https://download.pytorch.org/models/resnet50-11ad3fa6.pth
+mv resnet50-11ad3fa6.pth ~/.cache/torch/hub/checkpoints/resnet50-11ad3fa6.pth
+```
+
+
 ## Quickstart
+:man_student: 
+All the tutorials (notebooks) are available here : [Jacques examples](https://github.com/6tronl/jacques-examples)
+
+The checkpoint to load the classification model is available here : 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7822928.svg)](https://doi.org/10.5281/zenodo.7822928)
+As soon as you execute the code, if the latest checkpoint's release has not been already downloaded, it will be downloaded.
+
+
+
 ### Classify images in one directory
+:man_student: 
+[Tuto : classify one directory ](https://github.com/6tronl/jacques-examples/single_dir_classification.ipynb)
+
 To classify a folder of images, you can execute the script below in a python script or a notebook:
 
 ```py
 from jacques.inference import predictor
-results = predictor.classify_useless_images(folder_path='/path/to/your/image/folder')
+results = predictor.classify_useless_images(folder_path='/path/to/your/image/folder', ckpt_path='/path/to/your/checkpoint/')
 ```
 
 Jacques will automatically selects the files that are images in your folder and predict the utility of the image thanks to deep learning. It will return a pandas dataframe with 3 columns : directory, name and label (useless or useful). Here is an example of the results provided by  `classify_useless_images()` : 
@@ -100,41 +127,100 @@ Jacques will automatically selects the files that are images in your folder and 
 
 
 ### Classify images in several directories
+:man_student: 
+[Tuto : classify multiple directories ](https://github.com/6tronl/jacques-examples/multiple_dir_classification.ipynb)
+
 To classify images contained in several directories just make a list containg the paths to your directories and execute the following codes:
 
 ```py
 from jacques.inference import predictor
+import pandas as pd
 
 list_of_dir = ['path/to/dir/1/', 'path/to/dir/2/', 'path/to/dir/3/']
 
 results_of_all_dir = pd.DataFrame(columns = ['dir', 'image', 'class'])
 
 for directory in list_of_dir:
-    results = predictor.classify_useless_images(folder_path=directory)
+    results = predictor.classify_useless_images(folder_path=directory, ckpt_path='/checkpoint/path')
     results_of_all_dir = pd.concat([results_of_all_dir, results], axis=0, ignore_index=True)
+```
+### Classify multiple Seatizen sessions all at once
+:man_student: 
+[Tuto : classify multiple Seatizen sessions ](https://github.com/6tronl/jacques-examples/arbo_dir_classification.ipynb)
+
+For Seatizen sessions that follows the famous and unique directory tree (written below), you can directly classify images of these sessions.
 
 ```
+Seatizen tree (accepted in 02/2023) : 
+session_YYYY_MM_DD_location_device_nb
+│
+└───DCIM
+│   │
+│   └───IMAGES
+│   └───VIDEOS
+│   
+└───GPS
+└───SENSORS
+└───METADATA
+└───PROCESSED_DATA
+│   │
+│   └───BATHY
+│   └───FRAMES
+│       │   session_YYYY_MM_DD_location_device_nb1.jpeg
+│       │   session_YYYY_MM_DD_location_device_nb2.jpeg
+│       │   ...
+│   └───IA
+│   └───PHOTOGRAMMETRY
+│
+session_YYYY_MM_DD_location_device_nb
+│ ...
+```
+Use the following code lines to classify a Seatizen tree:
 
-### Display results 
+```py
+from jacques.inference import predictor
+import os
+import pandas as pd
+
+list_of_sessions = ['/path/to/session_YYYY_MM_DD_location_device_nb', '/path/to/session_YYYY_MM_DD_location_device_nb']
+
+results_of_all_sessions = pd.DataFrame(columns = ['dir', 'image', 'class'])
+for session in list_of_sessions:
+    results = predictor.classify_useless_images(folder_path=os.path.join(session, '/PROCESSED_DATA/FRAMES/'), ckpt_path='/checkpoint/path')
+    results_of_all_sessions = pd.concat([results_of_all_sessions, results], axis=0, ignore_index=True)
+```
+
+### Move images
+Once the classification of useless and useful images has been done, you can choose to copy or paste images in another directory. If working with the seatizen tree, follow the method in the tuto provided to move images keeping the name of the session as a subdirectory.
+
+
+```py
+from jacques.inference import output
+
+output.move_images(results,
+           dest_path = '/destination/path/directory/to/move/images/',
+           who_moves = 'useless',
+           copy_or_cut = 'cut'
+           )
+```
+
+### Display results (optionally)
 Optionally, you can display some or all of the results using  `display_results()` and the results dataframe returned by `classify_useless_images()`.
 
 ```py
-from jacques.inference.save_predictions import display_predictions
-display_predictions(results, image_nb=5)
+from jacques.inference import output
+
+output.display_predictions(results, image_nb=5)
 ```
 
-### Move useless images
-Once the classification of useless and useful images has been done, you can choose to copy or paste 
-
-
-
-### Export results
+### Export results (optionally)
 Results are returned as a pandas dataframe. For instance, if you want to export the results in a csv format just add :
 
 ```py
 results.to_csv('path/to/export/results.csv', index = False, header = True)
 ```
 
+# Have Fun!
 
 
 

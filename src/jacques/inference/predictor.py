@@ -2,19 +2,19 @@ import os
 import numpy as np
 import pandas as pd
 import torch
+import glob
 import torchvision.models as models
 from torch.multiprocessing import set_start_method
-from importlib_resources import files
 from torch.utils.data import DataLoader
 from tqdm import tqdm
 from PIL import ImageFile
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 from collections import OrderedDict
+from subprocess import Popen, PIPE, CalledProcessError
 from jacques.model_building.model_config import neural_network_settings
 from jacques.model_building.layers import HeadNet, build_model
 from jacques.dataloading.datamodule import DataModule
 from jacques.dataloading.custom_datasets import UnlabeledDataset
-from jacques.inference.output import SavePredictionsDf
 
 try:
      set_start_method('spawn')
@@ -23,13 +23,27 @@ except RuntimeError:
 
 
 class UselessImagesPredictor():
-    def __init__(self, model, checkpoint_path):
+    def __init__(self, model, download=False, checkpoint_path=None):
                 
         self.model = model
         self.model= self.model.to(torch.device("cuda" if torch.cuda.is_available() else "cpu"))
+        self.download = download
         self.checkpoint = checkpoint_path
+
+    def download_checkpoint(self):
+        with Popen(["zenodo_get", "10.5281/zenodo.8041819"], stdout=PIPE, bufsize=1, universal_newlines=True) as p:
+            for line in p.stdout:
+                print(line, end='')
+
+        if p.returncode != 0:
+            raise CalledProcessError(p.returncode, p.args)
         
     def load_checkpoint(self):
+        if self.download == True:
+            self.download_checkpoint()
+            checkpoints = glob.glob('./*.ckpt')
+            self.checkpoint = max(checkpoints, key=os.path.getctime)
+
         checkpoint_loaded = torch.load(self.checkpoint, map_location='cuda:0' if torch.cuda.is_available() else 'cpu')
         new_state_dict = OrderedDict()
         for k, v in checkpoint_loaded['state_dict'].items():
@@ -53,7 +67,7 @@ class UselessImagesPredictor():
             label = "useful"
         return prob, label
     
-def classify_useless_images(folder_path, ckpt_path):
+def classify_useless_images(folder_path, download=False, ckpt_path=None):
     '''
     A function that classifies images stored in a folder.
     Input:
@@ -74,7 +88,7 @@ def classify_useless_images(folder_path, ckpt_path):
     
     model = build_model(backbone, headnet)
 
-    predictor = UselessImagesPredictor(model, ckpt_path)
+    predictor = UselessImagesPredictor(model, download, ckpt_path)
     
     unlabeled_img = os.listdir(folder_path)
     unlabeled_img = [f for f in unlabeled_img if f.endswith('.jpg') or f.endswith('.jpeg') or f.endswith('.JPG') or f.endswith('.JPEG') or f.endswith('.png') or f.endswith('.PNG')]

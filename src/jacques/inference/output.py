@@ -28,14 +28,14 @@ class SavePredictionsDf():
 
 
 def display_predictions(results_df, image_nb=int):
-    '''
-    Function that displays images and predicted labels returned by the classify_useless_images function for a certain number of images.
-    # Input:
-    - results_df : a pandas dataframe with 3 columns 'dir', 'image' and 'class'
-    - image_nb : the number of images you want to display
-    # Output
-    - a view of images and their predicted label.
+    '''Function that displays images and predicted labels returned by the classify_useless_images function for a certain number of images.
     
+    Args:
+        results_df : a pandas dataframe with 3 columns 'dir', 'image' and 'class'
+        image_nb : the number of images you want to display
+    
+    Returns:
+    a view of images and their predicted label.
     '''
     samples = results_df.sample(n=image_nb)
 
@@ -47,15 +47,16 @@ def display_predictions(results_df, image_nb=int):
 
 
 def move_images(results_df, dest_path, who_moves=['useless', 'useful'], copy_or_cut=['copy', 'cut']):
-    '''
-    Function that copy/paste or cut/paste images predicted as useless or useful in the destination path.
-    # Input:
-    - results_df : a pandas dataframe with 3 columns 'dir', 'image' and 'class'
-    - dest_path : the path where the images will be moved or pasted
-    - who_moves : whether to move the useful or useless images in another directory
-    - copy_or_cut: whether to copy/paste or cut/paste the images
-    # Output:
-    Images are copied or cut into the destination path
+    '''Function that copy/paste or cut/paste images predicted as useless or useful in the destination path.
+    
+    Args:
+        results_df : a pandas dataframe with 3 columns 'dir', 'image' and 'class'
+        dest_path : the path where the images will be moved or pasted
+        who_moves : whether to move the useful or useless images in another directory
+        copy_or_cut: whether to copy/paste or cut/paste the images
+    
+    Returns:
+        Images are copied or cut into the destination path
     '''
     #check if dest_path exists (create if needed)
     os.makedirs(dest_path, exist_ok=True)

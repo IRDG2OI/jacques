@@ -4,11 +4,11 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "jacques"
-version = "0.0.1"
+version = "0.2.1"
 authors = [
   { name="Justine Talpaert", email="justine.daudon@ird.fr" },
 ]
-description = "A package to classify useless and useful images collected with the seatizen protocol."
+description = "A package to classify useless and useful images according to marine ecological interests."
 readme = "README.md"
 requires-python = ">=3.7"
 classifiers = [
@@ -22,11 +22,9 @@ dependencies = [
     "pandas>=1.2.3",
     "numpy>1.18.1",
     "matplotlib>=3.5.3",
-    "pytorch-lightning>=1.9.3"
+    "pytorch-lightning>=1.9.3",
+    "zenodo_get"
 ]
-
-[tool.setuptools.package-data]
-"jacques.inference" = ["*.ckpt"]
 
 [project.urls]
 "Homepage" = "https://github.com/6tronl/jacques"
