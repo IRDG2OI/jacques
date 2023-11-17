@@ -1,6 +1,14 @@
 <div align="center">
 
-<img src="jacques.png" height="150px">
+<img src="jacques.png" height="150px"># ACKNOWLEDGEMENT
+
+This project is being developed as part of the G2OI project, cofinanced by the European Union, the Reunion region, and the French Republic.
+<div align="center">
+
+
+<img src="https://github.com/IRDG2OI/geoflow-g2oi/blob/main/img/logos_partenaires.png?raw=True" height="80px">
+
+</div>
 
 # Jacques : a cleaner for your Seatizen sessions
 
